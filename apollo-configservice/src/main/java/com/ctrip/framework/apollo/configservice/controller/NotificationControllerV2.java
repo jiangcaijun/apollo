@@ -117,8 +117,8 @@ public class NotificationControllerV2 implements ReleaseMessageListener {
     }
     
     DeferredResultWrapper deferredResultWrapper = new DeferredResultWrapper(bizConfig.longPollingTimeoutInMilli());
-    Set<String> namespaces = Sets.newHashSet();
-    Map<String, Long> clientSideNotifications = Maps.newHashMap();
+    Set<String> namespaces = Sets.newHashSetWithExpectedSize(filteredNotifications.size());
+    Map<String, Long> clientSideNotifications = Maps.newHashMapWithExpectedSize(filteredNotifications.size());
     
     for (Map.Entry<String, ApolloConfigNotification> notificationEntry : filteredNotifications.entrySet()) {
       String normalizedNamespace = notificationEntry.getKey();
